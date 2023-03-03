@@ -24,6 +24,8 @@ import {
 } from "components/layout";
 import authProvider from "./authProvider";
 
+import List
+
 function App() {
   return (
     <ColorModeContextProvider>
@@ -53,8 +55,16 @@ function App() {
             type="login"
             providers={[
               {
-                name: "google",
-                label: "Sign in with Google",
+                name: "github",
+                label: "Sign in with Github",
+              },
+              {
+                name: "linkedin",
+                label: "Sign in with LinkedIn",
+              },
+              {
+                name: "discord",
+                label: "Sign in with Discord",
               },
             ]}
             formProps={{
@@ -70,7 +80,7 @@ function App() {
         catchAll={<ErrorComponent />}
         resources={[
           {
-            name: "posts",
+            name: "profile",
             list: AntdInferencer,
             edit: AntdInferencer,
             show: AntdInferencer,

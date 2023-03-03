@@ -3,23 +3,38 @@ import { AuthProvider } from "@pankod/refine-core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
-  login: async ({ email, password }) => {
+  login: async ({ email, password, providerName }) => {
+    // sign in with oauth
+    if (providerName) {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+            provider: providerName,
+        });
+
+        if (error) {
+            return Promise.reject(error);
+        }
+
+        if (data?.url) {
+            return Promise.resolve(false);
+        }
+    }
+
+    // sign in with email and password
     const { data, error } = await supabaseClient.auth.signInWithPassword({
-      email,
-      password,
+        email,
+        password,
     });
 
     if (error) {
-      return Promise.reject(error);
+        return Promise.reject(error);
     }
 
     if (data?.user) {
-      return Promise.resolve();
+        return Promise.resolve();
     }
 
-    // for third-party login
-    return Promise.resolve(false);
-  },
+    return Promise.resolve();
+},
   register: async ({ email, password }) => {
     const { data, error } = await supabaseClient.auth.signUp({
       email,
