@@ -66,12 +66,6 @@ function App() {
                 label: "Sign in with Discord",
               },
             ]}
-            formProps={{
-              initialValues: {
-                email: "info@refine.dev",
-                password: "refine-supabase",
-              },
-            }}
           />
         )}
         notificationProvider={notificationProvider}
