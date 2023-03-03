@@ -17,14 +17,13 @@ import { ColorModeContextProvider } from "contexts";
 import {
   Title,
   Header,
-  Sider,
   Footer,
   Layout,
   OffLayoutArea,
 } from "components/layout";
 import authProvider from "./authProvider";
-
-import List
+import { Dashboard } from "components/pages/profile/dashboard";
+import { ProfileEdit } from "components/pages/profile/edit";
 
 function App() {
   return (
@@ -82,17 +81,16 @@ function App() {
           {
             name: "profile",
             list: AntdInferencer,
-            edit: AntdInferencer,
-            show: AntdInferencer,
-            create: AntdInferencer,
-            canDelete: true,
+            edit: ProfileEdit,
+            show: Dashboard,
+            canDelete: false,
           },
         ]}
         Title={Title}
         Header={Header}
-        Sider={Sider}
         Footer={Footer}
         Layout={Layout}
+        DashboardPage={Dashboard}
         OffLayoutArea={OffLayoutArea}
       />
     </ColorModeContextProvider>

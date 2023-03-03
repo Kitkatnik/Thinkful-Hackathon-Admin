@@ -12,14 +12,14 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
   const breakpoint = Grid.useBreakpoint();
   return (
-    <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
+    <AntdLayout style={{ minHeight: "100vh", flexDirection: "row"}}>
       {Sider && <Sider />}
       <AntdLayout>
         {Header && <Header />}
         <AntdLayout.Content>
           <div
             style={{
-              padding: breakpoint.sm ? 24 : 12,
+              padding: breakpoint.md ? "24px 24%" : "12px 12%",
               minHeight: 360,
             }}
           >

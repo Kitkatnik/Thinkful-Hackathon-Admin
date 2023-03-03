@@ -41,6 +41,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
   };
 
   const { darkAlgorithm, defaultAlgorithm } = theme;
+  console.log(defaultAlgorithm);
 
   return (
     <ColorModeContext.Provider
