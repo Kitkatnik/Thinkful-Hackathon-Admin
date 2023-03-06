@@ -24,6 +24,10 @@ import {
 import authProvider from "./authProvider";
 import { Dashboard } from "components/pages/profile/dashboard";
 import { ProfileEdit } from "components/pages/profile/edit";
+import { LogoList } from "components/pages/logo/list";
+import { LogoCreate } from "components/pages/logo/create";
+import { LogoShow } from "components/pages/logo/show";
+import { LogoEdit } from "components/pages/logo/edit";
 
 function App() {
   return (
@@ -46,7 +50,7 @@ function App() {
             {
               path: "/update-password",
               element: <AuthPage type="updatePassword" />,
-            },
+            }
           ],
         }}
         LoginPage={() => (
@@ -74,11 +78,18 @@ function App() {
         resources={[
           {
             name: "profile",
-            list: AntdInferencer,
             edit: ProfileEdit,
             show: Dashboard,
             canDelete: false,
           },
+          {
+            name: "logo",
+            list: LogoList,
+            edit: LogoEdit,
+            create: LogoCreate,
+            show: LogoShow,
+            canDelete: false,
+          }
         ]}
         Title={Title}
         Header={Header}

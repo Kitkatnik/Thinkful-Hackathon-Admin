@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { IResourceComponentsProps, useShow, useGetIdentity, useOne, HttpError } from "@pankod/refine-core";
 import {
     Show,
@@ -7,7 +9,8 @@ import {
     ImageField,
     UrlField,
     EditButton,
-    RefreshButton
+    RefreshButton,
+    Button
 } from "@pankod/refine-antd";
 
 const { Title } = Typography;
@@ -36,12 +39,18 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
     const profile = profileData?.data;
 
     return (
-        <Show isLoading={isLoading} title="Your Profile" goBack={false} breadcrumb={false} headerButtons={() => (
+        <Show 
+            isLoading={isLoading} 
+            title="Your Profile" 
+            goBack={false} 
+            breadcrumb={false} 
+            headerButtons={() => (
                 <>
                     <EditButton 
                         resourceNameOrRouteName="profile"
                         recordItemId={user?.id}
                     >Edit</EditButton>
+                    <Link to="/logo"><Button type="primary">Custom Button</Button></Link>
                 </>
             )} >
             <Title level={5}>Full Name</Title>
