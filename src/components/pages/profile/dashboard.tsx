@@ -24,12 +24,15 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
         linkedin: string;
         github: string;
         description: string;
+        logo_complete?: boolean;
+        logo_requested?: boolean;
+        logo_id?: number;
 	}
 
     const { queryResult } = useShow();
-    const { data } = queryResult;
+    // const { data } = queryResult;
 
-    const record = data?.data;
+    // const record = data?.data;
 
     const { data: user, isLoading } = useGetIdentity();
     const { data: profileData } = useOne<IProfile, HttpError>({
@@ -37,6 +40,20 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
 		id: user?.id,
 	});
     const profile = profileData?.data;
+    // console.log(profile);
+
+    const logoButton = () => {
+        const { logo_complete, logo_requested, logo_id } = profile ?? {};
+        if (!logo_complete && !logo_requested) {
+            return (<Link to="/logo/create"><Button>Request A Logo</Button></Link>);
+        } else if(!logo_complete && logo_requested) {
+            return (<Link to="/logo"><Button>Check Logo Queue</Button></Link>);
+        } else if(logo_complete){
+            return (<Link to={`/logo/show/${logo_id}`}><Button>View Logo</Button></Link>);
+        }
+    }
+
+    // pending, submitted, creating, revising, completed, cancelled
 
     return (
         <Show 
@@ -50,7 +67,7 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
                         resourceNameOrRouteName="profile"
                         recordItemId={user?.id}
                     >Edit</EditButton>
-                    <Link to="/logo"><Button type="primary">Custom Button</Button></Link>
+                    {logoButton()}
                 </>
             )} >
             <Title level={5}>Full Name</Title>
@@ -68,3 +85,4 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
         </Show>
     );
 };
+

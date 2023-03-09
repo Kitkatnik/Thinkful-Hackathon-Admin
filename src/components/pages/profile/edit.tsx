@@ -5,12 +5,10 @@ import {
     Form,
     useForm,
     Input,
-    DatePicker,
     Upload,
     getValueFromEvent,
     RefreshButton
 } from "@pankod/refine-antd";
-import dayjs from "dayjs";
 
 export const ProfileEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm({
@@ -18,8 +16,6 @@ export const ProfileEdit: React.FC<IResourceComponentsProps> = () => {
         redirect: "show"
 
     });
-
-    const profileData = queryResult?.data?.data;
 
     return (
         <Edit saveButtonProps={saveButtonProps} title="Edit Your Profile" breadcrumb={false}  headerButtons={() => (
