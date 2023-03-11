@@ -19,7 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <AntdLayout.Content>
           <div
             style={{
-              padding: breakpoint.md ? "24px 24%" : "12px 12%",
+              padding: breakpoint.lg ? "24px 24%" : "12px 2%",
               minHeight: 360, width: "100vw",
             }}
           >
