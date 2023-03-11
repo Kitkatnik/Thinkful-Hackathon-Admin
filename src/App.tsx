@@ -22,12 +22,12 @@ import {
   OffLayoutArea,
 } from "components/layout";
 import authProvider from "./authProvider";
-import { Dashboard } from "components/pages/profile/dashboard";
-import { ProfileEdit } from "components/pages/profile/edit";
-import { LogoList } from "components/pages/logo/list";
-import { LogoCreate } from "components/pages/logo/create";
-import { LogoShow } from "components/pages/logo/show";
-import { LogoEdit } from "components/pages/logo/edit";
+import { Dashboard } from "components/pages/profiles/dashboard";
+import { ProfileEdit } from "components/pages/profiles/edit";
+import { LogoList } from "components/pages/logos/list";
+import { LogoCreate } from "components/pages/logos/create";
+import { LogoShow } from "components/pages/logos/show";
+import { LogoEdit } from "components/pages/logos/edit";
 
 function App() {
   return (
@@ -77,13 +77,13 @@ function App() {
         catchAll={<ErrorComponent />}
         resources={[
           {
-            name: "profile",
+            name: "profiles",
             edit: ProfileEdit,
             show: Dashboard,
             canDelete: false,
           },
           {
-            name: "logo",
+            name: "logos",
             list: LogoList,
             edit: LogoEdit,
             create: LogoCreate,

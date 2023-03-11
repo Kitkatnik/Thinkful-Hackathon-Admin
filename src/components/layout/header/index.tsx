@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
 	const id = user?.id;
 
 	const { data } = useOne<IProfile, HttpError>({
-		resource: "profile",
+		resource: "profiles",
 		id,
 	});
 	const record = data?.data;

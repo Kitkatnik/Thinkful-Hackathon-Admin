@@ -29,14 +29,9 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
         logo_id?: number;
 	}
 
-    const { queryResult } = useShow();
-    // const { data } = queryResult;
-
-    // const record = data?.data;
-
     const { data: user, isLoading } = useGetIdentity();
     const { data: profileData } = useOne<IProfile, HttpError>({
-		resource: "profile",
+		resource: "profiles",
 		id: user?.id,
 	});
     const profile = profileData?.data;
@@ -45,11 +40,11 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
     const logoButton = () => {
         const { logo_complete, logo_requested, logo_id } = profile ?? {};
         if (!logo_complete && !logo_requested) {
-            return (<Link to="/logo/create"><Button>Request A Logo</Button></Link>);
+            return (<Link to="/logos/create"><Button>Request A Logo</Button></Link>);
         } else if(!logo_complete && logo_requested) {
-            return (<Link to="/logo"><Button>Check Logo Queue</Button></Link>);
+            return (<Link to="/logos"><Button>Check Logo Queue</Button></Link>);
         } else if(logo_complete){
-            return (<Link to={`/logo/show/${logo_id}`}><Button>View Logo</Button></Link>);
+            return (<Link to={`/logos/show/${logo_id}`}><Button>View Logo</Button></Link>);
         }
     }
 
@@ -64,7 +59,7 @@ export const Dashboard: React.FC<IResourceComponentsProps> = () => {
             headerButtons={() => (
                 <>
                     <EditButton 
-                        resourceNameOrRouteName="profile"
+                        resourceNameOrRouteName="profiles"
                         recordItemId={user?.id}
                     >Edit</EditButton>
                     {logoButton()}
